@@ -7,20 +7,126 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <title>TEST trivia</title>
+    <title>Big 12 Trivia</title>
 </head>
 
 <body>
-some text in the body
+    College Football season is upon us! I am a major college football fan and WVU alumni. WVU plays
+    in the Big 12 Conference for football. What do you know about the Big 12?
     <script src="assets/javascript/app.js"></script>
 
     <div id="timer"></div>
-    <div id="questionBlock"></div>
+    <div id="questionBlock">
+        <div id="trivia">
+            <ol>
+                <li class="question">
+                    What town is West Virginia University located?
+                    <form name="q1">
+                        <!-- move the position of the correct response around for variety -->
+                        <input type="radio" class="incorrect" value="incorrect" name="q1"> Clemson
+                        <br>
+                        <input type="radio" class="incorrect" value="incorrect" name="q1"> Tuscaloosa
+                        <br>
+                          <!-- correct -->
+                        <input type="radio" class="correct" value="correct"  name="q1"> Morgantown
+                        <br>
+                        <input type="radio" class="incorrect" value="incorrect" name="q1"> Rocky Top
+                        <br>
+                    </form>
+                </li>
+                <br>
+                <li class="question">
+                    How many teams are in the Big 12 Conference?
+                    <form name="q2">
+                        <input type="radio" class="incorrect" value="incorrect" name="q2"> 14
+                        <br>
+                        <input type="radio" class="incorrect" value="incorrect" name="q2"> 11
+                        <br>
+                        <input type="radio" class="incorrect" value="incorrect"  name="q2"> 16
+                        <br>
+                        <!-- correct answer -->
+                        <input type="radio" class="correct" value="correct"  name="q2"> 10
+                        <br>
+                    </form>
+                </li>
+                <br>
+                <li class="question">
+                    How many college football national titles does the Big 12 Conference claim?
+                    <form name="q3">
+                        <!-- correct answer -->
+                        <input type="radio" class="correct" name="q3"> 3
+                        <br>
+                        <input type="radio" class="incorrect" name="q3"> 10
+                        <br>
+                        <input type="radio" class="incorrect" name="q3"> 0
+                        <br>
+                        <input type="radio" class="incorrect" name="q3"> 6
+                        <br>
+                    </form>
+                </li>
+                <br>
+                <li class="question">
+                    Which school is NOT a member of the Big 12 Conference?
+                    <form name="q4">
+                        <input type="radio" class="incorrect" name="q4"> Oklahoma University
+                        <br>
+                        <input type="radio" class="incorrect" name="q4"> Iowa State University
+                        <br>
+                        <input type="radio" class="incorrect" name="q4"> Texas Christian University
+                        <br>
+                        <!-- correct answer -->
+                        <input type="radio" class="correct" name="q4"> University of Arkansas
+                        <br>
+                    </form>
+                </li>
+                <br>
+                <li class="question">
+                    On what date was the Big 12 Conference founded?
+                    <form name="q5">
+                        <input type="radio" class="incorrect" name="q5"> June 24, 1988
+                        <br>
+                        <!-- correct answer -->
+                        <input type="radio" class="correct" name="q5"> February 25, 1994
+                        <br>
+                        <input type="radio" class="incorrect" name="q5"> January 1, 1990
+                        <br>
+                        <input type="radio" class="incorrect" name="q5"> July 1, 2002
+                        <br>
+                    </form>
+                </li>
+                <br>
+                <li class="question">
+                    The Big 12 Conference was founded by the merging of what two defunct NCAA Athletic Conferences?
+                    <form name="q6">
+                        <input type="radio" class="incorrect" name="q6"> Big Sky Conference and Southern Conference
+                        <br>
+                        <input type="radio" class="incorrect" name="q6"> Sunbelt Conference and Big East Conference
+                        <br>
+                        <!-- correct answer -->
+                        <input type="radio" class="incorrect" name="q6"> American Athletic Conference and Pac-12 Conference
+                        <br>
+                        <input type="radio" class="correct" name="q6"> Southwest Conference and Big 8 Conference
+                        <br>
+                    </form>
+                </li>
+
+
+
+            </ol>
+        </div>
+
+    </div>
     <div id="answerBlock"></div>
 
-    <button class ="btn btn-success" id ="start">Start Game</button>
-    <button class ="btn btn-success" id ="reset">Start again?</button>
-    <button class ="btn btn-success" id ="done">Done!</button>
+    <!-- <button class="btn btn-success" id="start">Start Game</button> -->
+    <button class="btn btn-success" id="reset">Start again?</button>
+    <div>
+        <button id="start">Start!</button>
+    </div>
+    <div>
+        <button id="done">Done!</button>
+    </div>
+    </div>
 
 </body>
 

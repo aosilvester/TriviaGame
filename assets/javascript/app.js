@@ -4,11 +4,9 @@ $(document).ready(function () {
 
     var corrects = document.getElementsByClassName("correct");
     var incorrects = document.getElementsByClassName("incorrect");
-    var numCorrects = [];
-    var numIncorrects = [];
-    var intervalId;
-    var checkTest = 0;
-
+    numCorrects = 0;
+    numIncorrects = 0;
+    numUnanswered = 0;
 
     var questionOptions = [{
             //question 1
@@ -67,97 +65,8 @@ $(document).ready(function () {
         $("#reset").css('display', 'block');
         $("#done").css('display', 'block');
         run();
+        $("#questionBlock").css('display', 'block');
 
-        $("#questionBlock").html(
-
-            "1. " + questionOptions[0].question +
-            "<br>" +
-            "<input type='radio' class='incorrect' id='cor'>" +
-            "<label>" + questionOptions[0].choice[0] + "</label>" +
-
-            "<input type='radio' class='incorrect' id='question1'>" +
-            "<label>" + questionOptions[0].choice[1] + "</label>" +
-
-            // correct
-            "<input type='radio' class='correct' id='correct'>" +
-            "<label>" + questionOptions[0].choice[2] + "</label>" +
-            // end of correct
-
-            "<input type='radio' class='incorrect' id='question1'>" +
-            "<label>" + questionOptions[0].choice[3] + "</label>" +
-            "<br>" 
-            +
-
-            "2. " + questionOptions[1].question +
-            "<br>" +
-            // correct
-            "<input type='radio' class='correct' id='question2'>" +
-            "<label>" + questionOptions[1].choice[0] + "</label>" +
-            //end of correct
-            "<input type='radio' class='incorrect' id='question2'>" +
-            "<label>" + questionOptions[1].choice[1] + "</label>" +
-            "<input type='radio' class='incorrect' id='question2'>" +
-            "<label>" + questionOptions[1].choice[2] + "</label>" +
-            "<input type='radio' class='incorrect' id='question2'>" +
-            "<label>" + questionOptions[1].choice[3] + "</label>" +
-            "<br>" +
-
-            "3. " + questionOptions[2].question +
-            "<br>" +
-            "<input type='radio' class='incorrect' id='question3' name='question3'>" +
-            "<label for='huey'>" + questionOptions[2].choice[0] + "</label>" +
-            //correct
-            "<input type='radio' class='correct' id='question3' name='question3'>" +
-            "<label for='huey'>" + questionOptions[2].choice[1] + "</label>" +
-            //end of correct
-            "<input type='radio' class='incorrect' id='question3' name='question3'>" +
-            "<label for='huey'>" + questionOptions[2].choice[2] + "</label>" +
-            "<input type='radio' class='incorrect' id='question3' name='question3'>" +
-            "<label for='huey'>" + questionOptions[2].choice[3] + "</label>" +
-            "<br>" +
-
-            "4. " + questionOptions[3].question +
-            "<br>" +
-            "<input type='radio' class='incorrect' id='question4' name='question4'>" +
-            "<label for='huey'>" + questionOptions[3].choice[0] + "</label>" +
-            "<input type='radio' class='incorrect' id='question4' name='question4'>" +
-            "<label for='huey'>" + questionOptions[3].choice[1] + "</label>" +
-            "<input type='radio' class='incorrect' id='question4' name='question4'>" +
-            "<label for='huey'>" + questionOptions[3].choice[2] + "</label>" +
-            //correct
-            "<input type='radio' class='correct' id='question4' name='question4'>" +
-            "<label for='huey'>" + questionOptions[3].choice[3] + "</label>" +
-            //end of correct
-            "<br>" +
-            "5. " + questionOptions[4].question +
-            "<br>" +
-            "<input type='radio' class='incorrect' id='question5' name='question5'>" +
-            "<label for='huey'>" + questionOptions[4].choice[0] + "</label>" +
-            //correct
-            "<input type='radio' class='correct' id='correct' name='question5'>" +
-            "<label for='huey'>" + questionOptions[4].choice[1] + "</label>" +
-            //end of correct
-            "<input type='radio' class='incorrect' id='question5' name='question5'>" +
-            "<label for='huey'>" + questionOptions[4].choice[2] + "</label>" +
-            "<input type='radio' class='incorrect' id='question5' name='question5'>" +
-            "<label for='huey'>" + questionOptions[4].choice[3] + "</label>" +
-            "<br>" +
-
-            "6. " + questionOptions[5].question +
-            "<br>" +
-            "<input type='radio' class='incorrect' id='question6' name='question6'>" +
-            "<label for='huey'>" + questionOptions[5].choice[0] + "</label>" +
-            "<input type='radio' class='incorrect' id='question6' name='question6'>" +
-            "<label for='huey'>" + questionOptions[5].choice[1] + "</label>" +
-            "<input type='radio' class='incorrect' id='question6' name='question6'>" +
-            "<label for='huey'>" + questionOptions[5].choice[2] + "</label>" +
-            //correct
-            "<input type='radio' class='correct' id='question6' name='question6'>" +
-            "<label for='huey'>" + questionOptions[5].choice[3] + "</label>"
-            //end of correct
-
-
-        )
 
     });
     //begin correct answer event listening
@@ -165,7 +74,7 @@ $(document).ready(function () {
 
     //begin timer functioning
 
-    var number = 10;
+    var number = 60;
     var intervalId;
 
     function run() {
@@ -187,7 +96,8 @@ $(document).ready(function () {
             alert("Time Up!");
 
             number = 10;
-            countCorrects();
+
+            $("#answerBlock").show();
 
             answerPage()
 
@@ -205,77 +115,75 @@ $(document).ready(function () {
         $("#reset").hide();
         $("#start").show();
         stop();
-        number = 10;
+        number = 60;
+        numIncorrects = 0;
+        numCorrects = 0;
         console.log("timer reset: " + number);
+        $("#answerBlock").hide();
     });
     //end of timer function. 
-
-
 
     //transition from question portion to results portion
 
     $('#done').click(function () {
         console.log("the done button was clicked");
-        $("#reset").hide();
+        // $("#reset").hide();
         $("#done").hide();
-        $("#start").show();
+        // $("#start").show();
         stop();
-        number = 10;
+        number = 60;
         console.log("timer reset: " + number);
-        countCorrects();
+        $("#answerBlock").show();
 
         answerPage();
+        
+
     });
 
 
-    // function countCorrects() {
-    //     for (var i = 0, i = corrects.length; i < length; i++) {
-    //         if (corrects[i].checked) {
-    //             numCorrects.push(corrects[i]);
-    //         }
-    //     }
-
-    // }; 
-
-    //alternate method of countCorrects below
 
     function countCorrects() {
-        for (var i = 0, i = 6; i < length; i++) {
-            if (document.getElementsByClassName("correct").checked = true) {
-                numCorrects.push(corrects[i]);
+        console.log(corrects)
+        for (var i = 0; i < corrects.length; i++) {
+            console.log("correct check", corrects[i])
+            if (corrects[i].checked) {
+                numCorrects++
             }
         }
 
     };
 
-    //end of alternate method of countCorrects
+
 
     function countIncorrects() {
         for (var i = 0, length = incorrects.length; i < length; i++) {
             if (incorrects[i].checked) {
-                numIncorrects.push(incorrects[i]);
-                console.log("incorrects.value = " + incorrects[i].value);
-
+                numIncorrects++
+                
             }
         }
-        console.log("You got " + numIncorrects.length + " incorrect.");
-    };
+        console.log("You got " + numIncorrects + " incorrect.");
+    }
 
 
-    var corrects = document.getElementsByClassName("correct");
-    var incorrects = document.getElementsByClassName("incorrect");
 
 
 
     function answerPage() {
-        $("#questionBlock").html("correct answers = " + numCorrects);
-
-        // $("answerBlock").html("this is where the answers will populate once i finish this part");
-
-        // console.log("answer page will populate");
-
-        // countCorrects();
+        
+        countCorrects();
         countIncorrects();
+        $("#questionBlock").hide();
+        $("answerBlock").css('display', 'block');
+
+        $("#answerBlock").html(
+
+            "correct answers = " + numCorrects +
+            "<br>" + "<br>" +
+            "incorrect answers = " + numIncorrects +
+            "<br>" + "<br>" 
+
+        );
 
         console.log("You got " + numIncorrects.length + " incorrect.");
 
@@ -285,7 +193,7 @@ $(document).ready(function () {
         console.log("incorrects = " + incorrects);
         console.log("corrects = " + corrects);
         console.log("incorrects length = " + incorrects.length);
-        console.log("corrects length = " + corrects.length);
-        console.log("check test " + checkTest);
+        // console.log("corrects length = " + corrects.length);
+
     }
 });
